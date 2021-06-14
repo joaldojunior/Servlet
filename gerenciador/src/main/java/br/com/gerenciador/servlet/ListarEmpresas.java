@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.gerenciador.model.Empresa;
 import br.com.gerenciador.util.Banco;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,17 +22,9 @@ public class ListarEmpresas extends HttpServlet {
 		Banco banco = new Banco();
 		List<Empresa> lista = banco.getEmpresas();
 		
-		PrintWriter out = response.getWriter();
-		
-		out.write("<html>");
-		out.write("<body>");
-		out.write("<ul>");
-		for (Empresa empresa : lista) {
-			out.write("<li>" + empresa.getNome() + "</li>");
-		}
-		out.write("</ul>");
-		out.write("</body>");
-		out.write("</html>");
+		request.setAttribute("empresas", lista);
+		RequestDispatcher rd = request.getRequestDispatcher("/listarEmpresas.jsp");
+		rd.forward(request, response);
 	}
 
 }

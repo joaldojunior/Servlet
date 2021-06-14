@@ -8,12 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Empresa 
-<% 
-	String nomeEmpresa = (String) request.getAttribute("empresa");
-	
-%>
-<h4><%= nomeEmpresa %></h4>
-Cadastrado com sucesso!
+Empresa <h4>${ empresa }</h4> Cadastrado com sucesso!
 </body>
 </html>
