@@ -1,8 +1,6 @@
 package br.com.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import br.com.gerenciador.model.Empresa;
 import br.com.gerenciador.util.Banco;
@@ -13,17 +11,20 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/listaEmpresas")
-public class ListarEmpresas extends HttpServlet {
+@WebServlet("/mostraEmpresa")
+public class MostrarEmpresa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String sId = request.getParameter("id");
+		Integer id = Integer.valueOf(sId);
 		
 		Banco banco = new Banco();
-		List<Empresa> lista = banco.getEmpresas();
+		Empresa empresa = banco.findById(id);
 		
-		request.setAttribute("empresas", lista);
-		RequestDispatcher rd = request.getRequestDispatcher("/listarEmpresas.jsp");
+		request.setAttribute("empresa", empresa);
+		RequestDispatcher rd = request.getRequestDispatcher("/alterarEmpresa.jsp");
 		rd.forward(request, response);
 	}
 

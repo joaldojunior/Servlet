@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
+    <c:url value="nova" var="linkServletNovaEmpresa"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${not empty empresa }">
-	Empresa <h4>${ empresa }</h4> Cadastrado com sucesso!
-</c:if>
 
-<c:if test="${empty empresa }">
-	Nenhuma Empresa Cadastrada!
-</c:if>
+<form action="${linkServletNovaEmpresa }" method="post">
+	Nome: <input type="text" name="nome">
+	Data: <input type="text" name="data">
+		  <input type="submit"> 
+</form>
 </body>
 </html>
