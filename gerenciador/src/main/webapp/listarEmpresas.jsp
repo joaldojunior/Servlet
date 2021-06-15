@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List, br.com.gerenciador.model.Empresa"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	Lista de Empresa <br />
+	
 	<ul>
-		<%
-			List<Empresa> lista = (List<Empresa>)request.getAttribute("empresas");
-			for (Empresa empresa : lista) {
-		%>
-			<li><%= empresa.getNome() %></li>
-		<%
-			}
-		%>
+		<c:forEach items="${empresas}" var="empresa">
+			<li>${empresa.nome }</li>
+		</c:forEach>	
 	</ul>
 </body>
 </html>
